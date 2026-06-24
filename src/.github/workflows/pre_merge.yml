@@ -1,0 +1,28 @@
+name: Build Pre - Merge
+run-name: Build Pre - Merge
+
+on:
+  pull_request:
+    branches:
+      - "main"
+  push:
+    branches:
+      - "txv1"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout Repository
+        uses: actions/checkout@v5
+
+      - name: Build
+        run: sh build.sh
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary
+          path: ${{ github.workspace }}/*.exe
+          retention-days:1
+          if-no-files-found: warn
