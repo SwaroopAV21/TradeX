@@ -40,3 +40,4 @@ void Factory::freeCommands(){
         delete this->nextCommand;
         this->nextCommand = nullptr;
     }
+}
