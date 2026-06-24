@@ -71,3 +71,6 @@ Testing/
 
 #vscode
 .vscode
+
+#built exe
+.exe
