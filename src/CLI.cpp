@@ -16,7 +16,7 @@ void CLI::run(){
         Command* command =  commandFactory->getCommand(inputCMD);
         if(command != nullptr){
             command->run();
-        } else {
+        } else if(command == nullptr) {
             cout << "Command not supported" << endl;
         }
 

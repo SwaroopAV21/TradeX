@@ -11,6 +11,6 @@ private:
 public:
     virtual void run() = 0;
 
-    void setCommand(const string inputCommand);
+    void setCommand(const string& inputCommand);
     bool isCommand(const string inputCommand);
 };

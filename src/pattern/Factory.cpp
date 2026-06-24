@@ -15,19 +15,25 @@ Factory::Factory(Command* inputCommandObj){
 Command* Factory::getCommand(const string inputCommandStr){
     if(this->command->isCommand(inputCommandStr)){
         return this->command;
-    } else if(this->nextCommand->command->isCommand(inputCommandStr)){
-        return getCommand(inputCommandStr);
+    } 
+    if (this->nextCommand != nullptr) {
+        return this->nextCommand->getCommand(inputCommandStr);
     }
 
     return nullptr;
 }
 
 void Factory::appendCommand(Command* inputCommand){
-    if(this->command != nullptr){
+    if(this->command == nullptr){
         this->command = inputCommand;
-    } else if (this->nextCommand->command != nullptr){
-        appendCommand(inputCommand);
+        return;
+    } 
+    if (this->nextCommand == nullptr) {
+        this->nextCommand = new Factory(inputCommand);
+        return;
     }
+
+    this->nextCommand->appendCommand(inputCommand);
 }
 
 void Factory::freeCommands(){
